@@ -5,7 +5,7 @@
         "name": "Auto Part One",
         "price": 12,
         "stock": 220,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/auto1.jpg"
@@ -16,7 +16,7 @@
         "name": "Cutting Tool One",
         "price": 8,
         "stock": 250,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/cutting1.jpg"
@@ -27,7 +27,7 @@
         "name": "Decoration Tool One",
         "price": 10,
         "stock": 300,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/decoration1.jpg"
@@ -38,7 +38,7 @@
         "name": "Electrical Tool One",
         "price": 10,
         "stock": 300,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/electric1.jpg"
@@ -49,7 +49,7 @@
         "name": "Garden Tool One",
         "price": 10,
         "stock": 300,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/garden1.jpg"
@@ -60,7 +60,7 @@
         "name": "Measure Tool One",
         "price": 10,
         "stock": 300,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/measure1.jpg"
@@ -71,7 +71,7 @@
         "name": "Plumbing Tool One",
         "price": 10,
         "stock": 300,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/plumbing1.jpg"
@@ -82,7 +82,7 @@
         "name": "Power Tool One",
         "price": 10,
         "stock": 300,
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "quantity": 0,
         "img": "images/power1.jpg"
@@ -92,7 +92,7 @@
         "category": "safety tools",
         "name": "Safety Tool one",
         "img": "images/safty1.jpg",
-        "desc": "",
+        "desc": "Phasellus sed volutpat orci. Fusce eget lore mauris vehicula elementum gravida nec dui. Aenean aliquam varius ipsum, non ultricies tellus sodales eu. Donec dignissim viverra nunc, ut aliquet magna posuere eget.",
         "min": 20,
         "stock": 200,
         "price": 15,
