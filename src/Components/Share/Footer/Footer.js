@@ -201,6 +201,31 @@ const Footer = () => {
                     </div>
                 </div>
             </footer>
+            <footer className="footer-bottom  ">
+                <div className="container-md">
+                    <div className="d-flex align-items-center justify-content-between border-top py-4">
+                        <div>
+                            <p className="m-0">
+                                Copyright &copy; 2022 Tanjir. All Rights
+                                Reserved.
+                            </p>
+                        </div>
+                        <div>
+                            <ul className="footer-terms">
+                                <li>
+                                    <a href=" ">Terms of Service</a>
+                                </li>
+                                <li>
+                                    <a href=" ">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href=" ">Supports</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 };

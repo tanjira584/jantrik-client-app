@@ -1,0 +1,7 @@
+.star-list li {
+    display: inline;
+    margin-left: 6px;
+}
+.star-list li .icon {
+    color: #f2ab08;
+}
