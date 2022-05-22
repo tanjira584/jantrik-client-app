@@ -33,7 +33,7 @@ const Summery = () => {
                     <div className=" ps-4">
                         <p className="m-0">
                             Our online store is your easy one-stop source for
-                            all things metalworking, and we’re positive we can
+                            all things metalworking, and we are positive we can
                             help you find the perfect quality solutions for all
                             your machine shop needs.
                         </p>

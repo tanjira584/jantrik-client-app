@@ -1,0 +1,8 @@
+.com-banner {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.com-banner h2 {
+    font-size: 40px;
+}
