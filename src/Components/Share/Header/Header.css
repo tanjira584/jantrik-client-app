@@ -1,0 +1,48 @@
+.offcanvas-menu-wrap {
+    transition-delay: 0.3s;
+}
+
+.offcanvas-menu-wrap::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    height: 100%;
+    width: 0;
+    opacity: 0.9;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+.offcanvas-menu-wrap.active::before {
+    content: "";
+    visibility: visible;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.offcanvas-menu-wrap.active .offcanvas-menu {
+    right: 0;
+    opacity: 1;
+}
+.offcanvas-menu-wrap .offcanvas-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    z-index: 20;
+    height: 100%;
+    width: 300px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    padding: 1.25rem;
+    opacity: 0.9;
+    transition-delay: 0.35s;
+    transition-duration: 0.45s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+} */

@@ -1,0 +1,10 @@
+.summery ul {
+    list-style: circle;
+    margin: 0;
+    padding: 0;
+}
+.summery ul li {
+    width: 33.33%;
+    display: inline-block;
+    margin-bottom: 10px;
+}
