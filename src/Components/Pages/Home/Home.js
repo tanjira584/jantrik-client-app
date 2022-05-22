@@ -13,7 +13,6 @@ const Home = () => {
             <Header></Header>
             <CompanyBanner></CompanyBanner>
             <HomeProduct></HomeProduct>
-            <div style={{ width: "100%", height: "500px" }}></div>
             <Reviews></Reviews>
             <Summery></Summery>
             <Footer></Footer>

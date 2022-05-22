@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Header.css";
 import flogo from "./../../../images/logo.webp";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
@@ -13,51 +14,51 @@ const Header = () => {
     };
     return (
         <div>
-            <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
-                <div class="container-md ">
-                    <a class="navbar-brand" href=" ">
+            <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
+                <div className="container-md ">
+                    <a className="navbar-brand" href=" ">
                         <img src={flogo} alt="" />
                     </a>
                     <button
                         onClick={() => handleToggle("open")}
-                        class="navbar-toggler"
+                        className="navbar-toggler"
                         type="button"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <span class="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"></span>
                     </button>
                     <div
-                        class="collapse navbar-collapse"
+                        className="collapse navbar-collapse"
                         id="navbarNavDropdown"
                     >
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link active"
+                        <ul className="navbar-nav ms-auto">
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link active"
                                     aria-current="page"
-                                    href=" "
+                                    to="/"
                                 >
                                     Home
-                                </a>
+                                </Link>
                             </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link active"
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link"
                                     aria-current="page"
-                                    href=" "
+                                    to="/dashboard"
+                                >
+                                    Dashboard
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link"
+                                    aria-current="page"
+                                    to="/login"
                                 >
                                     Login
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link active"
-                                    aria-current="page"
-                                    href=" "
-                                >
-                                    Signup
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
