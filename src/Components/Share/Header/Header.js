@@ -16,9 +16,9 @@ const Header = () => {
         <div>
             <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
                 <div className="container-md ">
-                    <a className="navbar-brand" href=" ">
+                    <Link className="navbar-brand" to="/">
                         <img src={flogo} alt="" />
-                    </a>
+                    </Link>
                     <button
                         onClick={() => handleToggle("open")}
                         className="navbar-toggler"
@@ -40,6 +40,15 @@ const Header = () => {
                                     to="/"
                                 >
                                     Home
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link active"
+                                    aria-current="page"
+                                    to="/purchase"
+                                >
+                                    Purchase
                                 </Link>
                             </li>
                             <li className="nav-item">

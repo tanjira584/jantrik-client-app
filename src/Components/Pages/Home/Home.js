@@ -5,6 +5,7 @@ import Summery from "../../Share/Summery/Summery";
 import CompanyBanner from "./CompanyBanner";
 import "./Home.css";
 import HomeProduct from "./HomeProduct";
+import Policy from "./Policy";
 import Reviews from "./Reviews";
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             <Header></Header>
             <CompanyBanner></CompanyBanner>
             <HomeProduct></HomeProduct>
+            <Policy></Policy>
             <Reviews></Reviews>
             <Summery></Summery>
             <Footer></Footer>

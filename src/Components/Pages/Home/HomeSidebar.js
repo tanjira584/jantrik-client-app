@@ -18,7 +18,7 @@ const HomeSidebar = () => {
                         <li
                             onClick={() => handleLi(product.id)}
                             key={product.id}
-                            className={li === product.id && "active"}
+                            className={li === product.id ? "active" : " "}
                         >
                             {product.category}
                         </li>

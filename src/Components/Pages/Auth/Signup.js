@@ -113,6 +113,14 @@ const Signup = () => {
                     />
                 </div>
             </form>
+            <div className="d-flex align-items-center py-3">
+                <div className="border w-50"></div>
+                <div className="mx-4">OR</div>
+                <div className="border w-50"></div>
+            </div>
+            <div>
+                <button className="w-100 p-2">Continue With Google</button>
+            </div>
         </div>
     );
 };
