@@ -4,6 +4,7 @@ import Header from "../../Share/Header/Header";
 import Summery from "../../Share/Summery/Summery";
 import CompanyBanner from "./CompanyBanner";
 import "./Home.css";
+import HomeProduct from "./HomeProduct";
 import Reviews from "./Reviews";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
         <div>
             <Header></Header>
             <CompanyBanner></CompanyBanner>
+            <HomeProduct></HomeProduct>
             <div style={{ width: "100%", height: "500px" }}></div>
             <Reviews></Reviews>
             <Summery></Summery>

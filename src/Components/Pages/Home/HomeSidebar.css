@@ -1,0 +1,24 @@
+.category-heading {
+    font-size: 18px;
+    padding: 16px 12px;
+    font-weight: 500;
+    border-bottom: 1px solid #cccccc;
+}
+.categories ul {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #cccccc;
+}
+.categories ul li {
+    padding: 8px 12px;
+    transition: 0.5s all;
+    text-transform: uppercase;
+}
+.categories ul li:hover {
+    background-color: #cccccc;
+    color: blue;
+}
+.categories ul li.active {
+    background-color: #cccccc;
+    color: blue;
+}

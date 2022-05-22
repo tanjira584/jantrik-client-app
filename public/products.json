@@ -1,0 +1,101 @@
+[
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb1",
+        "category": "auto parts",
+        "name": "Auto Part One",
+        "price": 12,
+        "stock": 220,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/auto1.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb2",
+        "category": "cutting tools",
+        "name": "Cutting Tool One",
+        "price": 8,
+        "stock": 250,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/cutting1.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb3",
+        "category": "decoration tools",
+        "name": "Decoration Tool One",
+        "price": 10,
+        "stock": 300,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/decoration1.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb4",
+        "category": "electrical tools",
+        "name": "Electrical Tool One",
+        "price": 10,
+        "stock": 300,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/electric.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb5",
+        "category": "garden tools",
+        "name": "Garden Tool One",
+        "price": 10,
+        "stock": 300,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/garden1.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb6",
+        "category": "measurement tools",
+        "name": "Measure Tool One",
+        "price": 10,
+        "stock": 300,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/measure1.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb7",
+        "category": "plumbing tools",
+        "name": "Plumbing Tool One",
+        "price": 10,
+        "stock": 300,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/plumbing1.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb8",
+        "category": "power tools",
+        "name": "Power Tool One",
+        "price": 10,
+        "stock": 300,
+        "desc": "",
+        "min": 20,
+        "quantity": 0,
+        "img": "images/power1.jpg"
+    },
+    {
+        "id": "6e5593d3-557b-43cf-8dab-a5140faedfb9",
+        "category": "safety tools",
+        "name": "Safety Tool one",
+        "img": "images/safty1.jpg",
+        "desc": "",
+        "min": 20,
+        "stock": 200,
+        "price": 15,
+        "quantity": 0
+    }
+]
