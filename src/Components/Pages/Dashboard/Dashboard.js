@@ -3,6 +3,7 @@ import Footer from "../../Share/Footer/Footer";
 import Header from "../../Share/Header/Header";
 import bg1 from "../../../images/com-banner4.jpg";
 import { Link, Outlet } from "react-router-dom";
+import "./Dashboard.css";
 
 const Dashboard = () => {
     return (
@@ -26,11 +27,12 @@ const Dashboard = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-3 ">
-                        <div className="dashboard-sidebar  bg-dark opacity-75 py-4 border-top px-2">
-                            <h2 className="text-light">Sidebar</h2>
+                        <div className="dashboard-sidebar  bg-dark opacity-75 py-4 border-top px-3">
                             <ul>
                                 <li>
-                                    <Link to="/dashboard">My Profile</Link>
+                                    <Link className="active" to="/dashboard">
+                                        My Profile
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link to="/dashboard/my-order">
