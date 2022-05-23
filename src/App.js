@@ -4,6 +4,11 @@ import Home from "./Components/Pages/Home/Home";
 import Auth from "./Components/Pages/Auth/Auth";
 import Purchase from "./Components/Pages/Purchase/Purchase";
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
+import MyProfile from "./Components/Pages/Dashboard/MyProfile";
+import MyOrders from "./Components/Pages/Dashboard/MyOrders";
+import AddReview from "./Components/Pages/Dashboard/AddReview";
+import ManageUsers from "./Components/Pages/Dashboard/ManageUsers";
+import AddProduct from "./Components/Pages/Dashboard/AddProduct";
 
 function App() {
     return (
@@ -12,10 +17,29 @@ function App() {
                 <Route path="/" element={<Home></Home>}></Route>
                 <Route path="/login" element={<Auth></Auth>}></Route>
                 <Route path="/purchase" element={<Purchase></Purchase>}></Route>
-                <Route
-                    path="/dashboard"
-                    element={<Dashboard></Dashboard>}
-                ></Route>
+                <Route path="/dashboard" element={<Dashboard></Dashboard>}>
+                    <Route index element={<MyProfile></MyProfile>}></Route>
+                    <Route
+                        path="my-order"
+                        element={<MyOrders></MyOrders>}
+                    ></Route>
+                    <Route
+                        path="add-review"
+                        element={<AddReview></AddReview>}
+                    ></Route>
+                    <Route
+                        path="manage-user"
+                        element={<ManageUsers></ManageUsers>}
+                    ></Route>
+                    <Route
+                        path="manage-order"
+                        element={<MyOrders></MyOrders>}
+                    ></Route>
+                    <Route
+                        path="add-product"
+                        element={<AddProduct></AddProduct>}
+                    ></Route>
+                </Route>
             </Routes>
         </div>
     );
