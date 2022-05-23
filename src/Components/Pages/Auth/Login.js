@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
     useSignInWithGoogle,
     useSignInWithEmailAndPassword,
     useAuthState,
+    useSendPasswordResetEmail,
 } from "react-firebase-hooks/auth";
 
 import auth from "../../../firebase.init";
@@ -16,16 +17,20 @@ const Login = () => {
         formState: { errors },
         reset,
     } = useForm();
+    const [email, setEmail] = useState("");
     const [signInWithGoogle, guser, gloading, gerror] =
         useSignInWithGoogle(auth);
     const [signInWithEmailAndPassword, euser, eloading, eerror] =
         useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending, error] =
+        useSendPasswordResetEmail(auth);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
     /*------Handle Form Submit----*/
     const onSubmit = (data) => {
         signInWithEmailAndPassword(data.email, data.password);
+
         reset();
     };
     if (euser || guser) {
@@ -35,6 +40,18 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle();
     };
+
+    /*-----Handle Password Reset -----*/
+    const handleChange = (e) => {
+        setEmail(e.target.value);
+    };
+    const passwordReset = () => {
+        sendPasswordResetEmail(email);
+    };
+    let authError;
+    if (eerror) {
+        authError = eerror.message;
+    }
     return (
         <div className="p-4  bg-white">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,6 +74,7 @@ const Login = () => {
                                 message: "Please provide a valid email",
                             },
                         })}
+                        onChange={handleChange}
                     />
                     <div>
                         {errors.email?.type === "required" && (
@@ -104,14 +122,17 @@ const Login = () => {
                         )}
                     </div>
                 </div>
-                <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex justify-content-between align-items-center mb-2">
                     <input
                         type="submit"
                         className="btn btn-primary"
                         value="Login Now"
                     />
-                    <span className="text-primary">Forgot Password?</span>
+                    <span onClick={passwordReset} className="text-primary">
+                        Forgot Password?
+                    </span>
                 </div>
+                {authError && <p className="text-danger m-0">{authError}</p>}
             </form>
             <div className="d-flex align-items-center py-3">
                 <div className="border w-50"></div>
