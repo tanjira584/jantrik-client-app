@@ -1,15 +1,37 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import {
+    useSignInWithGoogle,
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const Signup = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm();
+    const [signInWithGoogle, guser, gloading, gerror] =
+        useSignInWithGoogle(auth);
 
-    const onSubmit = (data) => {
-        console.log(data.email, data.password);
+    const [createUserWithEmailAndPassword, euser, eloading, eerror] =
+        useCreateUserWithEmailAndPassword(auth, {
+            sendEmailVerification: true,
+        });
+
+    const [updateProfile, updating, uerror] = useUpdateProfile(auth);
+
+    const onSubmit = async (data) => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
+        reset();
+    };
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle();
     };
     return (
         <div className="p-4  bg-white">
@@ -119,7 +141,9 @@ const Signup = () => {
                 <div className="border w-50"></div>
             </div>
             <div>
-                <button className="w-100 p-2">Continue With Google</button>
+                <button className="w-100 p-2" onClick={handleGoogleSignIn}>
+                    Continue With Google
+                </button>
             </div>
         </div>
     );

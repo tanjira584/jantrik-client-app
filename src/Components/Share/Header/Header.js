@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import "./Header.css";
 import flogo from "./../../../images/logo.webp";
 import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
+import auth from "../../../firebase.init";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
+    const [user] = useAuthState(auth);
+
     const handleToggle = (btn) => {
         if (btn === "open") {
             setToggle(true);
@@ -78,13 +83,21 @@ const Header = () => {
                                     Dashboard
                                 </Link>
                             </li>
+                            {user && (
+                                <button
+                                    className="btn text-white-50"
+                                    onClick={() => signOut(auth)}
+                                >
+                                    Signout
+                                </button>
+                            )}
                             <li className="nav-item">
                                 <Link
                                     className="nav-link"
                                     aria-current="page"
                                     to="/login"
                                 >
-                                    Login
+                                    Login/Register
                                 </Link>
                             </li>
                         </ul>

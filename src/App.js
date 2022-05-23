@@ -11,6 +11,7 @@ import ManageUsers from "./Components/Pages/Dashboard/ManageUsers";
 import AddProduct from "./Components/Pages/Dashboard/AddProduct";
 import Blogs from "./Components/Pages/Blogs/Blogs";
 import Product from "./Components/Pages/Product/Product";
+import RequireAuth from "./Components/Pages/Auth/RequireAuth";
 
 function App() {
     return (
@@ -20,7 +21,14 @@ function App() {
                 <Route path="/login" element={<Auth></Auth>}></Route>
                 <Route path="/blogs" element={<Blogs></Blogs>}></Route>
                 <Route path="/products" element={<Product></Product>}></Route>
-                <Route path="/purchase" element={<Purchase></Purchase>}></Route>
+                <Route
+                    path="/purchase"
+                    element={
+                        <RequireAuth>
+                            <Purchase></Purchase>
+                        </RequireAuth>
+                    }
+                ></Route>
                 <Route path="/dashboard" element={<Dashboard></Dashboard>}>
                     <Route index element={<MyProfile></MyProfile>}></Route>
                     <Route

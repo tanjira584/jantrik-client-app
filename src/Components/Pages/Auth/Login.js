@@ -1,15 +1,39 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import {
+    useSignInWithGoogle,
+    useSignInWithEmailAndPassword,
+    useAuthState,
+} from "react-firebase-hooks/auth";
+
+import auth from "../../../firebase.init";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm();
-
+    const [signInWithGoogle, guser, gloading, gerror] =
+        useSignInWithGoogle(auth);
+    const [signInWithEmailAndPassword, euser, eloading, eerror] =
+        useSignInWithEmailAndPassword(auth);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || "/";
+    /*------Handle Form Submit----*/
     const onSubmit = (data) => {
-        console.log(data.email, data.password);
+        signInWithEmailAndPassword(data.email, data.password);
+        reset();
+    };
+    if (euser || guser) {
+        return navigate(from);
+    }
+    /*------Handle Google SignIn-----*/
+    const handleGoogleSignIn = () => {
+        signInWithGoogle();
     };
     return (
         <div className="p-4  bg-white">
@@ -95,7 +119,9 @@ const Login = () => {
                 <div className="border w-50"></div>
             </div>
             <div>
-                <button className="w-100 p-2">Continue With Google</button>
+                <button className="w-100 p-2" onClick={handleGoogleSignIn}>
+                    Continue With Google
+                </button>
             </div>
         </div>
     );
