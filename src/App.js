@@ -12,6 +12,7 @@ import AddProduct from "./Components/Pages/Dashboard/AddProduct";
 import Blogs from "./Components/Pages/Blogs/Blogs";
 import Product from "./Components/Pages/Product/Product";
 import RequireAuth from "./Components/Pages/Auth/RequireAuth";
+import ManageProducts from "./Components/Pages/Dashboard/ManageProducts";
 
 function App() {
     return (
@@ -50,6 +51,10 @@ function App() {
                     <Route
                         path="add-product"
                         element={<AddProduct></AddProduct>}
+                    ></Route>
+                    <Route
+                        path="manage-product"
+                        element={<ManageProducts></ManageProducts>}
                     ></Route>
                 </Route>
             </Routes>

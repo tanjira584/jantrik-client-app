@@ -1,25 +1,71 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 import Footer from "../../Share/Footer/Footer";
 import Header from "../../Share/Header/Header";
 import "./Purchase.css";
 
 const Purchase = () => {
+    const [user] = useAuthState(auth);
+    const [qtyerror, setQtyerror] = useState("");
+
+    const [product, setProduct] = useState({});
     const [client, setClient] = useState({
-        name: "",
-        email: "",
+        name: user.displayName,
+        email: user.email,
         phone: "",
         country: "",
         city: "",
         zip: "",
         quantity: 0,
-        amount: 0,
     });
+    const prodId = localStorage.getItem("product");
+    useEffect(() => {
+        fetch(`http://localhost:5000/product/${prodId}`)
+            .then((res) => res.json())
+            .then((data) => setProduct(data));
+    }, [prodId]);
     const handleChange = (e) => {
         setClient({ ...client, [e.target.name]: e.target.value });
+        console.log(client.quantity);
+    };
+    let errorText;
+    const handleQuantity = (e) => {
+        setClient({ ...client, [e.target.name]: e.target.value });
+        if (parseInt(e.target.value) < parseInt(product.min)) {
+            errorText = `Please Order minimum ${product.min} piece`;
+            setQtyerror(errorText);
+        } else if (parseInt(e.target.value) > parseInt(product.stock)) {
+            errorText = `${product.stock} piece product available`;
+            setQtyerror(errorText);
+        } else {
+            errorText = "";
+            setQtyerror(errorText);
+        }
+        // console.log(client.quantity);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(client);
+        fetch("http://localhost:5000/orders", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ ...client, product: product._id }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                e.target.reset();
+                setClient({
+                    name: user.displayName,
+                    email: user.email,
+                    phone: "",
+                    country: "",
+                    city: "",
+                    zip: "",
+                    quantity: 0,
+                });
+            });
     };
     return (
         <div>
@@ -34,22 +80,16 @@ const Purchase = () => {
                                         <div className="img mb-3">
                                             <img
                                                 style={{ width: "100%" }}
-                                                src="images/garden1.jpg"
+                                                src={product.img}
                                                 alt=""
                                             />
                                         </div>
                                     </div>
                                     <div className="col-md-12">
                                         <div className="product-info">
-                                            <h2>Safety Tools One</h2>
+                                            <h2>{product.name}</h2>
                                             <p className="text-secondary">
-                                                Phasellus sed volutpat orci.
-                                                Fusce eget lore mauris vehicula
-                                                elementum gravida nec dui.
-                                                Aenean aliquam varius ipsum, non
-                                                ultricies tellus sodales eu.
-                                                Donec dignissim viverra nunc, ut
-                                                aliquet magna posuere eget.
+                                                {product.desc}
                                             </p>
                                             <span
                                                 style={{
@@ -59,7 +99,7 @@ const Purchase = () => {
                                                 }}
                                                 className=" mb-2 text-uppercase d-block"
                                             >
-                                                Unite Price: $10
+                                                Unite Price: ${product.price}
                                             </span>
                                             <span
                                                 style={{
@@ -69,7 +109,7 @@ const Purchase = () => {
                                                 }}
                                                 className=" mb-2 text-uppercase d-block"
                                             >
-                                                Stock: 200 piece
+                                                Stock: {product.stock} piece
                                             </span>
 
                                             <div className="d-flex align-items-center mb-3">
@@ -81,10 +121,13 @@ const Purchase = () => {
                                                         -
                                                     </button>
                                                     <input
-                                                        name=""
+                                                        name="quantity"
+                                                        type="number"
                                                         className="cart-plus-minus-box outline-none"
-                                                        defaultValue="120"
-                                                        id=""
+                                                        value={client.quantity}
+                                                        onChange={
+                                                            handleQuantity
+                                                        }
                                                     />
                                                     <button className="inc qtybutton">
                                                         +
@@ -121,8 +164,9 @@ const Purchase = () => {
                                             id="name"
                                             placeholder="Enter name"
                                             name="name"
-                                            value={client.name}
+                                            value={user.displayName}
                                             onChange={handleChange}
+                                            disabled
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -138,8 +182,9 @@ const Purchase = () => {
                                             id="email"
                                             placeholder="Enter email"
                                             name="email"
-                                            value={client.email}
+                                            value={user.email}
                                             onChange={handleChange}
+                                            disabled
                                         />
                                     </div>
                                     <div className="mb-3">
@@ -215,7 +260,10 @@ const Purchase = () => {
                                             htmlFor="quantity"
                                             className="form-label"
                                         >
-                                            Product Quantity
+                                            Product Quantity{" "}
+                                            <span className="text-muted">
+                                                / (Min-{product.min} piece)
+                                            </span>
                                         </label>
                                         <div className="cart-plus-minus d-block">
                                             <button
@@ -226,10 +274,11 @@ const Purchase = () => {
                                             </button>
                                             <input
                                                 name="quantity"
+                                                type="number"
                                                 className="cart-plus-minus-box outline-none"
                                                 id=""
                                                 value={client.quantity}
-                                                onChange={handleChange}
+                                                onChange={handleQuantity}
                                             />
                                             <button
                                                 className="inc qtybutton px-3 bg-primary text-light"
@@ -238,6 +287,9 @@ const Purchase = () => {
                                                 +
                                             </button>
                                         </div>
+                                        <p className="m-0 text-danger">
+                                            {qtyerror}
+                                        </p>
                                     </div>
                                     <div className="mb-3">
                                         <label
@@ -249,7 +301,11 @@ const Purchase = () => {
                                             </span>
                                         </label>
                                         <span className="fst-italic fw-bold ms-4">
-                                            ${client.amount}
+                                            $
+                                            {client.quantity
+                                                ? parseInt(client.quantity) *
+                                                  parseInt(product.price)
+                                                : 0}
                                         </span>
                                     </div>
                                     <div>
@@ -257,6 +313,11 @@ const Purchase = () => {
                                             className="btn btn-primary w-100"
                                             type="submit"
                                             value="Place An Order"
+                                            disabled={
+                                                client.quantity == 0 || qtyerror
+                                                    ? true
+                                                    : false
+                                            }
                                         />
                                     </div>
                                 </form>

@@ -17,6 +17,10 @@ const Header = () => {
             setToggle(false);
         }
     };
+    const handleSignout = () => {
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+    };
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
@@ -86,7 +90,7 @@ const Header = () => {
                             {user && (
                                 <button
                                     className="btn text-white-50"
-                                    onClick={() => signOut(auth)}
+                                    onClick={handleSignout}
                                 >
                                     Signout
                                 </button>

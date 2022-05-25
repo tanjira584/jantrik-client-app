@@ -6,6 +6,8 @@ import {
     useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import { useLocation, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 
 const Signup = () => {
     const {
@@ -23,12 +25,17 @@ const Signup = () => {
         });
 
     const [updateProfile, updating, uerror] = useUpdateProfile(auth);
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
         reset();
     };
+    if (euser || guser) {
+        signOut(auth);
+        navigate("/login");
+    }
 
     const handleGoogleSignIn = () => {
         signInWithGoogle();

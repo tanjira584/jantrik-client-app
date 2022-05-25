@@ -30,12 +30,29 @@ const Login = () => {
     /*------Handle Form Submit----*/
     const onSubmit = (data) => {
         signInWithEmailAndPassword(data.email, data.password);
-
         reset();
     };
     if (euser || guser) {
-        return navigate(from);
+        const user = euser?.user?.email || guser?.user?.email;
+        const name = euser?.user?.displayName || guser?.user?.displayName;
+        const currentUser = { email: user, name: name };
+        console.log(user);
+        fetch(`http://localhost:5000/user/${user}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                const accessToken = data.token;
+                localStorage.setItem("accessToken", accessToken);
+                return navigate(from);
+            });
     }
+
     /*------Handle Google SignIn-----*/
     const handleGoogleSignIn = () => {
         signInWithGoogle();

@@ -1,12 +1,11 @@
 import React from "react";
-import "./Dashboard.css";
 
-const ManageUsers = () => {
+const ManageProducts = () => {
     return (
         <div className="m-2">
             <div className="px-5 py-4 border-start mb-4">
                 <h4 className="fst-italic">
-                    Hi ! Tanjir . As a Admin You Can Manage All Users .
+                    Hi ! Tanjir . As a Admin You Can Manage All Products.
                 </h4>
             </div>
             <div className="table-responsive">
@@ -14,41 +13,41 @@ const ManageUsers = () => {
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Promote</th>
-                            <th scope="col">action</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Unite</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
-                            <td>abc@gmail.com</td>
-                            <td>User</td>
-
+                            <td>Garden Tool One</td>
+                            <td>100</td>
+                            <td>10</td>
+                            <td>1000</td>
                             <td>
                                 <button className="btn btn-sm btn-primary me-2">
-                                    MAKE ADMIN
+                                    Pay
                                 </button>
-                            </td>
-                            <td>
                                 <button className="btn btn-sm btn-danger">
-                                    DELETE USER
+                                    Cancel
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">2</th>
-                            <td>xyz@gmail.com</td>
-                            <td>User</td>
+                            <td>Plumbing Tool One</td>
+                            <td>50</td>
+                            <td>12</td>
+                            <td>600</td>
                             <td>
-                                <button className="btn btn-sm btn-primary me-2">
-                                    MAKE ADMIN
+                                <button className="btn btn-sm btn-success">
+                                    Paid
                                 </button>
-                            </td>
-                            <td>
-                                <button className="btn btn-sm btn-danger">
-                                    DELETE USER
+                                <button className="btn btn-sm btn-warning ms-2">
+                                    trnsId: 0384839ddhs383
                                 </button>
                             </td>
                         </tr>
@@ -59,4 +58,4 @@ const ManageUsers = () => {
     );
 };
 
-export default ManageUsers;
+export default ManageProducts;

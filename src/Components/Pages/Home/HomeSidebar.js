@@ -16,9 +16,9 @@ const HomeSidebar = () => {
                     <li className="category-heading">Product Categories</li>
                     {products.map((product) => (
                         <li
-                            onClick={() => handleLi(product.id)}
-                            key={product.id}
-                            className={li === product.id ? "active" : " "}
+                            onClick={() => handleLi(product._id)}
+                            key={product._id}
+                            className={li === product._id ? "active" : " "}
                         >
                             {product.category}
                         </li>

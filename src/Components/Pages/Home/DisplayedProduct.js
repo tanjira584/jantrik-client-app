@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 
 const DisplayedProduct = () => {
     const [products] = useProducts();
+
+    const handleProduct = (product) => {
+        localStorage.setItem("product", product._id);
+    };
     return (
         <div>
             <div className="row g-4">
                 {products.map((product) => (
-                    <div className="col-md-4" key={product.id}>
+                    <div className="col-md-4" key={product._id}>
                         <div className="home-prod p-3 border-rounded border">
                             <div className="img mb-2">
                                 <img
@@ -44,6 +48,7 @@ const DisplayedProduct = () => {
                                 </div>
                                 <Link
                                     className="btn w-100 btn-primary"
+                                    onClick={() => handleProduct(product)}
                                     to="/purchase"
                                 >
                                     Buy Now
