@@ -13,6 +13,8 @@ import Blogs from "./Components/Pages/Blogs/Blogs";
 import Product from "./Components/Pages/Product/Product";
 import RequireAuth from "./Components/Pages/Auth/RequireAuth";
 import ManageProducts from "./Components/Pages/Dashboard/ManageProducts";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     return (
@@ -58,6 +60,7 @@ function App() {
                     ></Route>
                 </Route>
             </Routes>
+            <ToastContainer />
         </div>
     );
 }

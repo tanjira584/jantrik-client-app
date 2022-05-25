@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
-
+import { toast } from "react-toastify";
 const AddProduct = () => {
     const [product, setProduct] = useState({
         category: "",
@@ -17,7 +17,28 @@ const AddProduct = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(product);
+        fetch(`http://localhost:5000/products`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ ...product }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                toast("Product Added Successfully");
+                e.target.reset();
+                setProduct({
+                    category: "",
+                    name: "",
+                    img: "",
+                    desc: "",
+                    min: 0,
+                    stock: 0,
+                    price: 0,
+                    quantity: 0,
+                });
+            });
     };
     return (
         <div className="m-2">

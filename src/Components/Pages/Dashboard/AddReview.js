@@ -1,20 +1,52 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../../firebase.init";
 import "./Dashboard.css";
 
 const AddReview = () => {
+    const [user, loading] = useAuthState(auth);
     const [review, setReview] = useState({
-        name: "",
+        name: user?.displayName,
+        email: user?.email,
         company: "",
         desc: "",
         rating: 0,
     });
-
+    const [error, setError] = useState(" ");
     const handleChange = (e) => {
         setReview({ ...review, [e.target.name]: e.target.value });
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(review);
+        if (parseInt(review.rating) < 1) {
+            setError("You Can't Rating Less Then 0");
+            return;
+        } else if (parseInt(review.rating) > 5) {
+            setError("You Can't Rating More Than 5");
+            return;
+        } else {
+            setError(" ");
+        }
+        fetch(`http://localhost:5000/reviews`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ ...review }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                toast("Got your quote successfully");
+                e.target.reset();
+                setReview({
+                    name: user.displayName,
+                    email: user.email,
+                    company: "",
+                    desc: "",
+                    rating: 0,
+                });
+            });
     };
     return (
         <div className="m-2">
@@ -30,6 +62,16 @@ const AddReview = () => {
                             type="text"
                             name="name"
                             value={review.name}
+                            onChange={handleChange}
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="email">Enter email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={review.email}
                             onChange={handleChange}
                             className="form-control"
                         />
@@ -52,12 +94,8 @@ const AddReview = () => {
                             value={review.rating}
                             onChange={handleChange}
                             className="form-control"
-                            disabled={
-                                review.rating == 5 || review.rating < 0
-                                    ? true
-                                    : false
-                            }
                         />
+                        <p className="m-0 text-danger">{error}</p>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="desc">Give a Quote</label>
@@ -66,7 +104,9 @@ const AddReview = () => {
                             className="form-control"
                             id=""
                             cols="30"
+                            value={review.desc}
                             rows="4"
+                            onChange={handleChange}
                         ></textarea>
                     </div>
                     <input
