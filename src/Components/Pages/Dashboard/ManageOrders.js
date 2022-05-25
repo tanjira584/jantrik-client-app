@@ -10,7 +10,7 @@ const ManageOrders = () => {
                 </h4>
             </div>
             <div className="table-responsive">
-                <table class="table table-striped table-hover">
+                <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

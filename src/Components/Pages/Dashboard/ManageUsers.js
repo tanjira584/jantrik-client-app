@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 
 const ManageUsers = () => {
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        fetch("http://localhost:5000/users")
+            .then((res) => res.json())
+            .then((data) => setUsers(data));
+    }, []);
     return (
         <div className="m-2">
             <div className="px-5 py-4 border-start mb-4">
@@ -10,7 +16,7 @@ const ManageUsers = () => {
                 </h4>
             </div>
             <div className="table-responsive">
-                <table class="table table-striped table-hover">
+                <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -21,37 +27,24 @@ const ManageUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>abc@gmail.com</td>
-                            <td>User</td>
+                        {users.map((user, index) => (
+                            <tr key={user._id}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{user.email}</td>
+                                <td>{user.role || "User"}</td>
 
-                            <td>
-                                <button className="btn btn-sm btn-primary me-2">
-                                    MAKE ADMIN
-                                </button>
-                            </td>
-                            <td>
-                                <button className="btn btn-sm btn-danger">
-                                    DELETE USER
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>xyz@gmail.com</td>
-                            <td>User</td>
-                            <td>
-                                <button className="btn btn-sm btn-primary me-2">
-                                    MAKE ADMIN
-                                </button>
-                            </td>
-                            <td>
-                                <button className="btn btn-sm btn-danger">
-                                    DELETE USER
-                                </button>
-                            </td>
-                        </tr>
+                                <td>
+                                    <button className="btn btn-sm btn-primary me-2">
+                                        MAKE ADMIN
+                                    </button>
+                                </td>
+                                <td>
+                                    <button className="btn btn-sm btn-danger">
+                                        DELETE USER
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

@@ -5,7 +5,7 @@ import auth from "../../../firebase.init";
 import "./Dashboard.css";
 
 const AddReview = () => {
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [review, setReview] = useState({
         name: user?.displayName,
         email: user?.email,
