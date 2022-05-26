@@ -33,7 +33,11 @@ const Payment = () => {
                         <h4>Hello, Mr. Tanjir Ahmed</h4>
                         <h6>
                             Your Total Coast:{" "}
-                            <span className="text-primary">$1200</span>
+                            <span className="text-primary">
+                                $
+                                {parseInt(order.quantity) *
+                                    parseInt(order.price)}
+                            </span>
                         </h6>
                     </div>
                     <div className="shadow p-4">

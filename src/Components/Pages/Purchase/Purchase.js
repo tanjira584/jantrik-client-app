@@ -52,7 +52,12 @@ const Purchase = () => {
             headers: {
                 "content-type": "application/json",
             },
-            body: JSON.stringify({ ...client, product: product._id }),
+            body: JSON.stringify({
+                ...client,
+                product: product._id,
+                prodName: product.name,
+                price: product.price,
+            }),
         })
             .then((res) => res.json())
             .then((data) => {

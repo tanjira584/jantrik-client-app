@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./Dashboard.css";
 
 const MyOrders = () => {
@@ -10,6 +11,17 @@ const MyOrders = () => {
             .then((res) => res.json())
             .then((data) => setOrders(data));
     }, []);
+    const handleCancel = (id) => {
+        fetch(`http://localhost:5000/order/${id}`, {
+            method: "DELETE",
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.acknowledged) {
+                    toast("Order Delete Successfully");
+                }
+            });
+    };
     return (
         <div className="m-2">
             <div className="px-5 py-4 border-start mb-4">
@@ -33,56 +45,43 @@ const MyOrders = () => {
                         {orders.map((order, index) => (
                             <tr key={order._id}>
                                 <th scope="row">{index + 1}</th>
-                                <td>{order.product}</td>
+                                <td>{order.prodName || order.product}</td>
                                 <td>{order.quantity}</td>
-                                <td>10</td>
-                                <td>1000</td>
+                                <td>{order.price}</td>
                                 <td>
-                                    <Link
-                                        to={`/dashboard/payment/${order._id}`}
-                                        className="btn btn-sm btn-primary me-2"
-                                    >
-                                        Pay
-                                    </Link>
-                                    <button className="btn btn-sm btn-danger">
-                                        Cancel
-                                    </button>
+                                    {parseInt(order.quantity) *
+                                        parseInt(order.price)}
+                                </td>
+                                <td>
+                                    {order?.paid ? (
+                                        <button className="btn btn-sm btn-success me-2">
+                                            Paid
+                                        </button>
+                                    ) : (
+                                        <Link
+                                            to={`/dashboard/payment/${order._id}`}
+                                            className="btn btn-sm btn-primary me-2"
+                                        >
+                                            Pay
+                                        </Link>
+                                    )}
+                                    {order?.paid ? (
+                                        <button className="btn btn-sm btn-warning ms-2">
+                                            trnsId: 0384839ddhs383
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() =>
+                                                handleCancel(order._id)
+                                            }
+                                            className="btn btn-sm btn-danger"
+                                        >
+                                            Cancel
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Garden Tool One</td>
-                            <td>100</td>
-                            <td>10</td>
-                            <td>1000</td>
-                            <td>
-                                <Link
-                                    to={`/dashboard/payment/${"id"}`}
-                                    className="btn btn-sm btn-primary me-2"
-                                >
-                                    Pay
-                                </Link>
-                                <button className="btn btn-sm btn-danger">
-                                    Cancel
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Plumbing Tool One</td>
-                            <td>50</td>
-                            <td>12</td>
-                            <td>600</td>
-                            <td>
-                                <button className="btn btn-sm btn-success">
-                                    Paid
-                                </button>
-                                <button className="btn btn-sm btn-warning ms-2">
-                                    trnsId: 0384839ddhs383
-                                </button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

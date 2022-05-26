@@ -10,8 +10,8 @@ const CheckoutForm = ({ order }) => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState("");
     const [clientSecret, setClientSecret] = useState("");
-    const { email } = order;
-    const price = 10;
+    const { email, name, price, quantity } = order;
+
     useEffect(() => {
         fetch("http://localhost:5000/client-payment-intent", {
             method: "POST",
@@ -46,7 +46,7 @@ const CheckoutForm = ({ order }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: "Tanjir",
+                        name: name,
                         email: email,
                     },
                 },
@@ -58,8 +58,26 @@ const CheckoutForm = ({ order }) => {
         } else {
             setCardError("");
             setTransactionId(paymentIntent.id);
-            setSuccess("Congrates! Your payment in compjleted");
-            toast("Congrates! Your payment in compjleted");
+            const payment = {
+                order: order._id,
+                transactionId: paymentIntent.id,
+            };
+            fetch(`http://localhost:5000/order/${order._id}`, {
+                method: "PATCH",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${localStorage.getItem(
+                        "accessToken"
+                    )}`,
+                },
+                body: JSON.stringify({ ...payment }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setProcessing(false);
+                    setSuccess("Congrates! Your payment in compjleted");
+                    toast("Congrates! Your payment in compjleted");
+                });
         }
     };
 
