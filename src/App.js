@@ -15,6 +15,8 @@ import RequireAuth from "./Components/Pages/Auth/RequireAuth";
 import ManageProducts from "./Components/Pages/Dashboard/ManageProducts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ManageOrders from "./Components/Pages/Dashboard/ManageOrders";
+import Payment from "./Components/Pages/Dashboard/Payment";
 
 function App() {
     return (
@@ -48,7 +50,11 @@ function App() {
                     ></Route>
                     <Route
                         path="manage-order"
-                        element={<MyOrders></MyOrders>}
+                        element={<ManageOrders></ManageOrders>}
+                    ></Route>
+                    <Route
+                        path="payment/:id"
+                        element={<Payment></Payment>}
                     ></Route>
                     <Route
                         path="add-product"

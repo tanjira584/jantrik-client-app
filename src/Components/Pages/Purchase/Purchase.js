@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import Footer from "../../Share/Footer/Footer";
 import Header from "../../Share/Header/Header";
@@ -55,6 +56,7 @@ const Purchase = () => {
         })
             .then((res) => res.json())
             .then((data) => {
+                toast("Order Placed Successfully");
                 e.target.reset();
                 setClient({
                     name: user.displayName,
