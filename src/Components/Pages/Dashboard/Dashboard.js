@@ -4,8 +4,18 @@ import Header from "../../Share/Header/Header";
 import bg1 from "../../../images/com-banner4.jpg";
 import { Link, Outlet } from "react-router-dom";
 import "./Dashboard.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import useAdmin from "../../../hooks/useAdmin";
+import auth from "../../../firebase.init";
 
 const Dashboard = () => {
+    const [user] = useAuthState(auth);
+    const [admin, adminLoading] = useAdmin(user);
+
+    // if (adminLoading) {
+    //     return <p className="text-center">Loading...</p>;
+    // }
+
     return (
         <div>
             <Header></Header>
@@ -34,36 +44,49 @@ const Dashboard = () => {
                                         My Profile
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link to="/dashboard/my-order">
-                                        My Orders
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/dashboard/add-review">
-                                        Add a Review
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/dashboard/manage-user">
-                                        Manage Users
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/dashboard/manage-order">
-                                        Manage Orders
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/dashboard/manage-product">
-                                        Manage Products
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/dashboard/add-product">
-                                        Add Product
-                                    </Link>
-                                </li>
+                                {!admin && (
+                                    <li>
+                                        <Link to="/dashboard/my-order">
+                                            My Orders
+                                        </Link>
+                                    </li>
+                                )}
+                                {!admin && (
+                                    <li>
+                                        <Link to="/dashboard/add-review">
+                                            Add a Review
+                                        </Link>
+                                    </li>
+                                )}
+                                {admin && (
+                                    <li>
+                                        <Link to="/dashboard/manage-user">
+                                            Manage Users
+                                        </Link>
+                                    </li>
+                                )}
+                                {admin && (
+                                    <li>
+                                        <Link to="/dashboard/manage-order">
+                                            Manage Orders
+                                        </Link>
+                                    </li>
+                                )}
+                                {admin && (
+                                    <li>
+                                        <Link to="/dashboard/manage-product">
+                                            Manage Products
+                                        </Link>
+                                    </li>
+                                )}
+                                {admin && (
+                                    <li>
+                                        <Link to="/dashboard/add-product">
+                                            Add Product
+                                        </Link>
+                                    </li>
+                                )}
+
                                 <li>
                                     <Link to="/signout">Sign Out</Link>
                                 </li>

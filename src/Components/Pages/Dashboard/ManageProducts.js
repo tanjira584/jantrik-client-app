@@ -1,8 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import useProducts from "../../../hooks/useProducts";
 
 const ManageProducts = () => {
     const [products] = useProducts();
+    const [stock, setStock] = useState(0);
+    const handleChange = (e) => {
+        setStock(e.target.value);
+    };
+
+    const handleStockUpdate = (id) => {
+        fetch(`http://localhost:5000/product/${id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify({ stock }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.acknowledged) {
+                    toast("Stock Update Successfully");
+                    setStock(0);
+                }
+            });
+    };
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/product/${id}`, {
+            method: "DELETE",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.acknowledged) {
+                    toast("Product Delete Successfully");
+                }
+            });
+    };
     return (
         <div className="m-2">
             <div className="px-5 py-4 border-start mb-4">
@@ -36,20 +73,29 @@ const ManageProducts = () => {
                                 </td>
                                 <td>{product.stock}</td>
                                 <td>
-                                    <form action="">
-                                        <input
-                                            type="number"
-                                            className="w-25 m-1"
-                                            name=""
-                                            id=""
-                                        />{" "}
-                                        <button className="btn btn-sm btn-primary">
-                                            Update
-                                        </button>
-                                    </form>
+                                    <input
+                                        type="number"
+                                        className="w-25 m-1"
+                                        name="stock"
+                                        id=""
+                                        onChange={handleChange}
+                                    />{" "}
+                                    <button
+                                        onClick={() =>
+                                            handleStockUpdate(product._id)
+                                        }
+                                        className="btn btn-sm btn-primary"
+                                    >
+                                        Update
+                                    </button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-sm btn-danger me-2">
+                                    <button
+                                        onClick={() =>
+                                            handleDelete(product._id)
+                                        }
+                                        className="btn btn-sm btn-danger me-2"
+                                    >
                                         Delete
                                     </button>
                                 </td>

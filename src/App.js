@@ -17,6 +17,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ManageOrders from "./Components/Pages/Dashboard/ManageOrders";
 import Payment from "./Components/Pages/Dashboard/Payment";
+import RequireAdmin from "./Components/Pages/Auth/RequireAdmin";
 
 function App() {
     return (
@@ -34,35 +35,77 @@ function App() {
                         </RequireAuth>
                     }
                 ></Route>
-                <Route path="/dashboard" element={<Dashboard></Dashboard>}>
-                    <Route index element={<MyProfile></MyProfile>}></Route>
+                <Route
+                    path="/dashboard"
+                    element={
+                        <RequireAuth>
+                            <Dashboard></Dashboard>
+                        </RequireAuth>
+                    }
+                >
+                    <Route
+                        index
+                        element={
+                            <RequireAuth>
+                                <MyProfile></MyProfile>
+                            </RequireAuth>
+                        }
+                    ></Route>
                     <Route
                         path="my-order"
-                        element={<MyOrders></MyOrders>}
+                        element={
+                            <RequireAuth>
+                                <MyOrders></MyOrders>
+                            </RequireAuth>
+                        }
                     ></Route>
                     <Route
                         path="add-review"
-                        element={<AddReview></AddReview>}
+                        element={
+                            <RequireAuth>
+                                <AddReview></AddReview>
+                            </RequireAuth>
+                        }
                     ></Route>
                     <Route
                         path="manage-user"
-                        element={<ManageUsers></ManageUsers>}
+                        element={
+                            <RequireAdmin>
+                                <ManageUsers></ManageUsers>
+                            </RequireAdmin>
+                        }
                     ></Route>
                     <Route
                         path="manage-order"
-                        element={<ManageOrders></ManageOrders>}
+                        element={
+                            <RequireAdmin>
+                                <ManageOrders></ManageOrders>
+                            </RequireAdmin>
+                        }
                     ></Route>
                     <Route
                         path="payment/:id"
-                        element={<Payment></Payment>}
+                        element={
+                            <RequireAuth>
+                                <Payment></Payment>
+                            </RequireAuth>
+                        }
                     ></Route>
                     <Route
                         path="add-product"
-                        element={<AddProduct></AddProduct>}
+                        element={
+                            <RequireAuth>
+                                <AddProduct></AddProduct>
+                            </RequireAuth>
+                        }
                     ></Route>
                     <Route
                         path="manage-product"
-                        element={<ManageProducts></ManageProducts>}
+                        element={
+                            <RequireAdmin>
+                                <ManageProducts></ManageProducts>
+                            </RequireAdmin>
+                        }
                     ></Route>
                 </Route>
             </Routes>

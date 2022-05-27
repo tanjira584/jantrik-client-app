@@ -5,10 +5,16 @@ import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import auth from "../../../firebase.init";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [user] = useAuthState(auth);
+    const [admin, adminLoading] = useAdmin(user);
+
+    // if (adminLoading) {
+    //     return <p className="text-center">Loading...</p>;
+    // }
 
     const handleToggle = (btn) => {
         if (btn === "open") {
@@ -69,24 +75,18 @@ const Header = () => {
                                     Blogs
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link active"
-                                    aria-current="page"
-                                    to="/purchase"
-                                >
-                                    Purchase
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="nav-link"
-                                    aria-current="page"
-                                    to="/dashboard"
-                                >
-                                    Dashboard
-                                </Link>
-                            </li>
+
+                            {user && (
+                                <li className="nav-item">
+                                    <Link
+                                        className="nav-link"
+                                        aria-current="page"
+                                        to="/dashboard"
+                                    >
+                                        Dashboard
+                                    </Link>
+                                </li>
+                            )}
                             {user && (
                                 <button
                                     className="btn text-white-50"

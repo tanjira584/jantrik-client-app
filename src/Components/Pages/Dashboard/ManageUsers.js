@@ -1,13 +1,33 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import "./Dashboard.css";
 
 const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/users")
+        fetch("http://localhost:5000/users", {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
             .then((res) => res.json())
             .then((data) => setUsers(data));
     }, []);
+    const handleRollUpdate = (email) => {
+        fetch(`http://localhost:5000/user/admin/${email}`, {
+            method: "PUT",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.acknowledged) {
+                    toast("User Promoted Successfully");
+                }
+            });
+    };
     return (
         <div className="m-2">
             <div className="px-5 py-4 border-start mb-4">
@@ -34,7 +54,12 @@ const ManageUsers = () => {
                                 <td>{user.role || "User"}</td>
 
                                 <td>
-                                    <button className="btn btn-sm btn-primary me-2">
+                                    <button
+                                        onClick={() =>
+                                            handleRollUpdate(user.email)
+                                        }
+                                        className="btn btn-sm btn-primary me-2"
+                                    >
                                         MAKE ADMIN
                                     </button>
                                 </td>

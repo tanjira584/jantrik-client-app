@@ -5,7 +5,12 @@ import "./Dashboard.css";
 const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/orders")
+        fetch("http://localhost:5000/orders", {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
             .then((res) => res.json())
             .then((data) => setOrders(data));
     }, []);
@@ -14,6 +19,7 @@ const ManageOrders = () => {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify({ shipment: true }),
         })
@@ -27,6 +33,9 @@ const ManageOrders = () => {
     const handleCancel = (id) => {
         fetch(`http://localhost:5000/order/${id}`, {
             method: "DELETE",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
         })
             .then((res) => res.json())
             .then((data) => {

@@ -22,7 +22,12 @@ const Purchase = () => {
     });
     const prodId = localStorage.getItem("product");
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${prodId}`)
+        fetch(`http://localhost:5000/product/${prodId}`, {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
             .then((res) => res.json())
             .then((data) => setProduct(data));
     }, [prodId]);
@@ -51,6 +56,7 @@ const Purchase = () => {
             method: "POST",
             headers: {
                 "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify({
                 ...client,
@@ -321,7 +327,8 @@ const Purchase = () => {
                                             type="submit"
                                             value="Place An Order"
                                             disabled={
-                                                client.quantity == 0 || qtyerror
+                                                parseInt(client.quantity) ===
+                                                    0 || qtyerror
                                                     ? true
                                                     : false
                                             }
