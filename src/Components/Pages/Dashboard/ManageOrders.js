@@ -5,7 +5,7 @@ import "./Dashboard.css";
 const ManageOrders = () => {
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/orders", {
+        fetch("http://localhost:5000/orders/admin", {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,

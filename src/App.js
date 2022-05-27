@@ -18,6 +18,9 @@ import "react-toastify/dist/ReactToastify.css";
 import ManageOrders from "./Components/Pages/Dashboard/ManageOrders";
 import Payment from "./Components/Pages/Dashboard/Payment";
 import RequireAdmin from "./Components/Pages/Auth/RequireAdmin";
+import Protfolio from "./Components/Pages/Protfolio/Protfolio";
+import UpdateProfile from "./Components/Pages/Dashboard/UpdateProfile";
+import Page404 from "./Components/Pages/Page404/Page404";
 
 function App() {
     return (
@@ -27,6 +30,10 @@ function App() {
                 <Route path="/login" element={<Auth></Auth>}></Route>
                 <Route path="/blogs" element={<Blogs></Blogs>}></Route>
                 <Route path="/products" element={<Product></Product>}></Route>
+                <Route
+                    path="/protfolio"
+                    element={<Protfolio></Protfolio>}
+                ></Route>
                 <Route
                     path="/purchase"
                     element={
@@ -64,6 +71,14 @@ function App() {
                         element={
                             <RequireAuth>
                                 <AddReview></AddReview>
+                            </RequireAuth>
+                        }
+                    ></Route>
+                    <Route
+                        path="update-profile"
+                        element={
+                            <RequireAuth>
+                                <UpdateProfile></UpdateProfile>
                             </RequireAuth>
                         }
                     ></Route>
@@ -108,6 +123,7 @@ function App() {
                         }
                     ></Route>
                 </Route>
+                <Route path="*" element={<Page404></Page404>}></Route>
             </Routes>
             <ToastContainer />
         </div>

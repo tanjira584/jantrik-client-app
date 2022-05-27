@@ -75,6 +75,15 @@ const Header = () => {
                                     Blogs
                                 </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link
+                                    className="nav-link active"
+                                    aria-current="page"
+                                    to="/protfolio"
+                                >
+                                    Protfolio
+                                </Link>
+                            </li>
 
                             {user && (
                                 <li className="nav-item">

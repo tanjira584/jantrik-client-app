@@ -18,8 +18,10 @@ const ManageUsers = () => {
         fetch(`http://localhost:5000/user/admin/${email}`, {
             method: "PUT",
             headers: {
+                "content-type": "application/json",
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
+            body: JSON.stringify({ role: "admin" }),
         })
             .then((res) => res.json())
             .then((data) => {

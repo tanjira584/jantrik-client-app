@@ -1,36 +1,56 @@
-import React from "react";
+import React, { Profiler, useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
+import auth from "../../../firebase.init";
 import "./Dashboard.css";
 
 const MyProfile = () => {
+    const [user] = useAuthState(auth);
+    const [myProfile, setMyProfile] = useState({});
+    useEffect(() => {
+        fetch("http://localhost:5000/user", {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => setMyProfile(data));
+    }, []);
+
     return (
         <div className="m-2">
             <div className="px-5 py-4 border-start mb-4">
                 <h4 className="fst-italic">
-                    Hi ! Tanjir . You can update your profile.
+                    Hi ! {myProfile.name} . You can update your profile.
                 </h4>
             </div>
             <div className="profile">
                 <div>
                     <h6>
-                        Name: <span className="fst-italic">Tanjir Ahmed</span>
+                        Name:{" "}
+                        <span className="fst-italic">{myProfile.name}</span>
                     </h6>
                 </div>
                 <div>
                     <h6>
                         Email:{" "}
-                        <span className="fst-italic">tanjir@gmail.com</span>
+                        <span className="fst-italic">{myProfile.email}</span>
                     </h6>
                 </div>
                 <div>
                     <h6>
-                        Phone: <span className="fst-italic">017**********</span>
+                        Phone:{" "}
+                        <span className="fst-italic">
+                            {myProfile.phone || "016xxxxxxxx"}
+                        </span>
                     </h6>
                 </div>
                 <div>
                     <h6>
                         Location:{" "}
                         <span className="fst-italic">
-                            District, Upazilla, village
+                            {myProfile.location || "Brahmanbaria, Kasba, Deli"}
                         </span>
                     </h6>
                 </div>
@@ -38,17 +58,25 @@ const MyProfile = () => {
                     <h6>
                         Education:{" "}
                         <span className="fst-italic">
-                            HSC-2015 (High School Certificate)
+                            {myProfile.education ||
+                                "HSC-2015 (High School Certificate)"}
                         </span>
                     </h6>
                 </div>
                 <div className="mb-5">
                     <h6>
                         LinkedIn:{" "}
-                        <span className="fst-italic">www.linkedin.com</span>
+                        <span className="fst-italic">
+                            {myProfile.link || "www.example.com"}
+                        </span>
                     </h6>
                 </div>
-                <button className="btn btn-primary">Edit Profile</button>
+                <Link
+                    className="btn btn-primary"
+                    to="/dashboard/update-profile"
+                >
+                    Edit Profile
+                </Link>
             </div>
         </div>
     );
