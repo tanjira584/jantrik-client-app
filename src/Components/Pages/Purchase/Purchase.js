@@ -149,7 +149,15 @@ const Purchase = () => {
                                             </div>
                                             <div>
                                                 <span className="fw-bold h5 fst-italic">
-                                                    Total: $1200
+                                                    Total: ${" "}
+                                                    {client.quantity
+                                                        ? parseInt(
+                                                              client.quantity
+                                                          ) *
+                                                          parseInt(
+                                                              product.price
+                                                          )
+                                                        : 0}
                                                 </span>
                                             </div>
                                         </div>

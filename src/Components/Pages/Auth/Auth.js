@@ -15,6 +15,9 @@ const Auth = () => {
             <Header></Header>
             <div className="py-5" style={{ backgroundColor: "#DFE4F0" }}>
                 <h2 className="text-center mb-4">CUSTOMER SIGN IN</h2>
+                <span className="text-center d-block">
+                    email: xyz@gmail.com, pass: 12345678
+                </span>
                 <div className="auth-wraper w-25 mx-auto">
                     <div className="authBtns text-center">
                         <button

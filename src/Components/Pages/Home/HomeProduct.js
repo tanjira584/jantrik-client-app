@@ -2,6 +2,7 @@ import React from "react";
 import DisplayedProduct from "./DisplayedProduct";
 import "./HomeProduct.css";
 import HomeSidebar from "./HomeSidebar";
+import Slider from "./Slider";
 
 const HomeProduct = () => {
     return (
@@ -12,7 +13,7 @@ const HomeProduct = () => {
                         <HomeSidebar></HomeSidebar>
                     </div>
                     <div className="col-md-9">
-                        <DisplayedProduct></DisplayedProduct>
+                        <Slider></Slider>
                     </div>
                 </div>
             </div>
