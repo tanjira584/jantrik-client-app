@@ -145,8 +145,8 @@ const Footer = () => {
             </footer>
             <footer className="footer-middle py-4">
                 <div className="container-md">
-                    <div className="d-flex align-items-center justify-content-between">
-                        <div className="footer-social d-flex align-items-center justify-content-between">
+                    <div className="d-md-flex align-items-center justify-content-between">
+                        <div className="footer-social d-flex align-items-center justify-content-between mb-4 mb-md-0">
                             <span className="me-4 fw-bold d-inline-block">
                                 Follow Us:{" "}
                             </span>
@@ -203,14 +203,14 @@ const Footer = () => {
             </footer>
             <footer className="footer-bottom  ">
                 <div className="container-md">
-                    <div className="d-flex align-items-center justify-content-between border-top py-4">
-                        <div>
+                    <div className="d-md-flex align-items-center justify-content-between border-top py-4">
+                        <div className="text-center mb-3 text-md-start">
                             <p className="m-0">
                                 Copyright &copy; 2022 Tanjir. All Rights
                                 Reserved.
                             </p>
                         </div>
-                        <div>
+                        <div className="text-center text-md-end">
                             <ul className="footer-terms">
                                 <li>
                                     <a href=" ">Terms of Service</a>

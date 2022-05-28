@@ -36,7 +36,7 @@ const Login = () => {
         const user = euser?.user?.email || guser?.user?.email;
         const name = euser?.user?.displayName || guser?.user?.displayName;
         const currentUser = { email: user, name: name };
-        fetch(`http://localhost:5000/user/${user}`, {
+        fetch(`https://dry-forest-04223.herokuapp.com/user/${user}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

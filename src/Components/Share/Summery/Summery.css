@@ -8,3 +8,8 @@
     display: inline-block;
     margin-bottom: 10px;
 }
+@media screen and (max-width: 768px) {
+    .summery ul li {
+        width: 50%;
+    }
+}

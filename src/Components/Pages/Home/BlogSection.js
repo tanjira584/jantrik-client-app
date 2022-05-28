@@ -13,7 +13,7 @@ const BlogSection = () => {
         <div className="py-4">
             <div className="container-md py-5">
                 <h2 className="mb-4">News & Reviews</h2>
-                <div className="row">
+                <div className="row g-5">
                     <div className="col-md-4">
                         <div className="home-news border">
                             <div className="img mb-3">

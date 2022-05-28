@@ -22,7 +22,7 @@ const Purchase = () => {
     });
     const prodId = localStorage.getItem("product");
     useEffect(() => {
-        fetch(`http://localhost:5000/product/${prodId}`, {
+        fetch(`https://dry-forest-04223.herokuapp.com/product/${prodId}`, {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -52,7 +52,7 @@ const Purchase = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:5000/orders", {
+        fetch("https://dry-forest-04223.herokuapp.com/orders", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

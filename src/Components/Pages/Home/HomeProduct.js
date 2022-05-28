@@ -9,7 +9,7 @@ const HomeProduct = () => {
         <div className="py-3">
             <div className="container-md">
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-3  d-none d-md-block">
                         <HomeSidebar></HomeSidebar>
                     </div>
                     <div className="col-md-9">

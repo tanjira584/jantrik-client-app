@@ -28,7 +28,7 @@ const AddReview = () => {
         } else {
             setError(" ");
         }
-        fetch(`http://localhost:5000/reviews`, {
+        fetch(`https://dry-forest-04223.herokuapp.com/reviews`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

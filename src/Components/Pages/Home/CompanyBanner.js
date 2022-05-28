@@ -5,7 +5,7 @@ import "./CompanyBanner.css";
 
 const CompanyBanner = () => {
     return (
-        <div>
+        <div className="d-none d-md-block">
             <div className="container-md ">
                 <div
                     style={{ backgroundImage: `url(${cbanner})` }}

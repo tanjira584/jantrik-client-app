@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useProducts = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/products", {
+        fetch("https://dry-forest-04223.herokuapp.com/products", {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,

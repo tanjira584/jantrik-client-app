@@ -7,7 +7,7 @@ import { faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/reviews", {
+        fetch("https://dry-forest-04223.herokuapp.com/reviews", {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -27,7 +27,7 @@ const Reviews = () => {
                             <Link to="/review">See All Review</Link>
                         </h4>
                     </div>
-                    <div className="d-flex align-items-center justify-content-between">
+                    <div className=" d-none d-md-flex align-items-center justify-content-between">
                         <ul className="m-0 p-0 star-list">
                             <li>
                                 <FontAwesomeIcon
@@ -63,7 +63,7 @@ const Reviews = () => {
                         <span className="ms-3">975 Reviews</span>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row g-5">
                     {reviews.slice(0, 4).map((review) => (
                         <div className="col-md-3" key={review._id}>
                             <div className="review">

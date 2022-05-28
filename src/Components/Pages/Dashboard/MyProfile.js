@@ -8,7 +8,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const [myProfile, setMyProfile] = useState({});
     useEffect(() => {
-        fetch("http://localhost:5000/user", {
+        fetch("https://dry-forest-04223.herokuapp.com/user", {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,

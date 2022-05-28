@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "./Dashboard.css";
+import { confirmAlert } from "react-confirm-alert";
 
 const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/users", {
+        fetch("https://dry-forest-04223.herokuapp.com/users", {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -15,7 +16,7 @@ const ManageUsers = () => {
             .then((data) => setUsers(data));
     }, []);
     const handleRollUpdate = (email) => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://dry-forest-04223.herokuapp.com/user/admin/${email}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",
@@ -29,6 +30,42 @@ const ManageUsers = () => {
                     toast("User Promoted Successfully");
                 }
             });
+    };
+    const handleDelete = (id) => {
+        confirmAlert({
+            title: "Confirm to submit",
+            message: "Are you sure to do this.",
+            buttons: [
+                {
+                    label: "Yes",
+                    onClick: () => {
+                        fetch(
+                            `https://dry-forest-04223.herokuapp.com/user/${id}`,
+                            {
+                                method: "DELETE",
+                                headers: {
+                                    authorization: `Bearer ${localStorage.getItem(
+                                        "accessToken"
+                                    )}`,
+                                },
+                            }
+                        )
+                            .then((res) => res.json())
+                            .then((data) => {
+                                if (data.acknowledged) {
+                                    toast("Order Delete Successfully");
+                                }
+                            });
+                    },
+                },
+                {
+                    label: "No",
+                    onClick: () => {
+                        return;
+                    },
+                },
+            ],
+        });
     };
     return (
         <div className="m-2">
@@ -66,7 +103,10 @@ const ManageUsers = () => {
                                     </button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-sm btn-danger">
+                                    <button
+                                        onClick={() => handleDelete(user._id)}
+                                        className="btn btn-sm btn-danger"
+                                    >
                                         DELETE USER
                                     </button>
                                 </td>

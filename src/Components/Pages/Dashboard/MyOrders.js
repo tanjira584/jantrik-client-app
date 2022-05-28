@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "./Dashboard.css";
+import { confirmAlert } from "react-confirm-alert";
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/orders", {
+        fetch("https://dry-forest-04223.herokuapp.com/orders", {
             method: "GET",
             headers: {
                 "content-type": "application/json",
@@ -18,19 +19,42 @@ const MyOrders = () => {
             .then((data) => setOrders(data));
     }, []);
     const handleCancel = (id) => {
-        fetch(`http://localhost:5000/order/${id}`, {
-            method: "DELETE",
-            headers: {
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.acknowledged) {
-                    toast("Order Delete Successfully");
-                }
-            });
+        confirmAlert({
+            title: "Confirm to submit",
+            message: "Are you sure to do this.",
+            buttons: [
+                {
+                    label: "Yes",
+                    onClick: () => {
+                        fetch(
+                            `https://dry-forest-04223.herokuapp.com/order/${id}`,
+                            {
+                                method: "DELETE",
+                                headers: {
+                                    authorization: `Bearer ${localStorage.getItem(
+                                        "accessToken"
+                                    )}`,
+                                },
+                            }
+                        )
+                            .then((res) => res.json())
+                            .then((data) => {
+                                if (data.acknowledged) {
+                                    toast("Order Delete Successfully");
+                                }
+                            });
+                    },
+                },
+                {
+                    label: "No",
+                    onClick: () => {
+                        return;
+                    },
+                },
+            ],
+        });
     };
+
     return (
         <div className="m-2">
             <div className="px-5 py-4 border-start mb-4">

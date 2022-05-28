@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
     const { email, name, price, quantity } = order;
 
     useEffect(() => {
-        fetch("http://localhost:5000/client-payment-intent", {
+        fetch("https://dry-forest-04223.herokuapp.com/client-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -62,7 +62,7 @@ const CheckoutForm = ({ order }) => {
                 order: order._id,
                 transactionId: paymentIntent.id,
             };
-            fetch(`http://localhost:5000/order/${order._id}`, {
+            fetch(`https://dry-forest-04223.herokuapp.com/order/${order._id}`, {
                 method: "PATCH",
                 headers: {
                     "content-type": "application/json",

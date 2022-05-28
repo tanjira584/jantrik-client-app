@@ -4,8 +4,8 @@ const Summery = () => {
     return (
         <div className="py-5 summery " style={{ backgroundColor: "#DFE4F0" }}>
             <div className="container-md">
-                <div className="d-flex  align-items-center justify-content-between">
-                    <div className="pe-4">
+                <div className="d-md-flex  align-items-md-center justify-content-md-between">
+                    <div className="pe-md-4">
                         <h3 className="mb-4">ABOUT JANTRIK</h3>
                         <p className="m-0">
                             Serving machine shops and job shops alike, Travers
@@ -30,7 +30,7 @@ const Summery = () => {
                             <li>Safety Tools</li>
                         </ul>
                     </div>
-                    <div className=" ps-4">
+                    <div className=" ps-md-4 mt-5 mt-md-0">
                         <p className="m-0">
                             Our online store is your easy one-stop source for
                             all things metalworking, and we are positive we can

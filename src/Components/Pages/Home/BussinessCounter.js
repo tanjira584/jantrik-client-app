@@ -23,7 +23,7 @@ const BussinessCounter = () => {
             }}
         >
             <div className="container-md py-5">
-                <div className="row">
+                <div className="row g-5">
                     <div className="col-md-3">
                         <div className="counter-box d-flex align-items-center justify-content-center">
                             <div className="img">

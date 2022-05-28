@@ -19,14 +19,19 @@ const UpdateProfile = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(profile);
-        fetch(`http://localhost:5000/user/admin/${user.email}`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json",
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body: JSON.stringify({ ...profile }),
-        })
+        fetch(
+            `https://dry-forest-04223.herokuapp.com/user/admin/${user.email}`,
+            {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${localStorage.getItem(
+                        "accessToken"
+                    )}`,
+                },
+                body: JSON.stringify({ ...profile }),
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data.acknowledged) {

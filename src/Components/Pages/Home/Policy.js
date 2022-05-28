@@ -10,7 +10,7 @@ const Policy = () => {
     return (
         <div className="py-5" style={{ backgroundColor: "#F2F2F2" }}>
             <div className="container-md py-5">
-                <div className="row">
+                <div className="row g-5">
                     <div className="col-md-3">
                         <div className="policy-box d-flex align-items-center justify-content-center">
                             <div className="img">

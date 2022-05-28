@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import useProducts from "../../../hooks/useProducts";
+import { confirmAlert } from "react-confirm-alert";
 
 const ManageProducts = () => {
     const [products] = useProducts();
@@ -10,7 +11,7 @@ const ManageProducts = () => {
     };
 
     const handleStockUpdate = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://dry-forest-04223.herokuapp.com/product/${id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
@@ -27,18 +28,40 @@ const ManageProducts = () => {
             });
     };
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {
-            method: "DELETE",
-            headers: {
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.acknowledged) {
-                    toast("Product Delete Successfully");
-                }
-            });
+        confirmAlert({
+            title: "Confirm to submit",
+            message: "Are you sure to do this.",
+            buttons: [
+                {
+                    label: "Yes",
+                    onClick: () => {
+                        fetch(
+                            `https://dry-forest-04223.herokuapp.com/product/${id}`,
+                            {
+                                method: "DELETE",
+                                headers: {
+                                    authorization: `Bearer ${localStorage.getItem(
+                                        "accessToken"
+                                    )}`,
+                                },
+                            }
+                        )
+                            .then((res) => res.json())
+                            .then((data) => {
+                                if (data.acknowledged) {
+                                    toast("Order Delete Successfully");
+                                }
+                            });
+                    },
+                },
+                {
+                    label: "No",
+                    onClick: () => {
+                        return;
+                    },
+                },
+            ],
+        });
     };
     return (
         <div className="m-2">

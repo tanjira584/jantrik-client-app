@@ -21,6 +21,7 @@ import RequireAdmin from "./Components/Pages/Auth/RequireAdmin";
 import Protfolio from "./Components/Pages/Protfolio/Protfolio";
 import UpdateProfile from "./Components/Pages/Dashboard/UpdateProfile";
 import Page404 from "./Components/Pages/Page404/Page404";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 function App() {
     return (

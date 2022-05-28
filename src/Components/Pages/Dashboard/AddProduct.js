@@ -17,7 +17,7 @@ const AddProduct = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:5000/products`, {
+        fetch(`https://dry-forest-04223.herokuapp.com/products`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

@@ -8,8 +8,8 @@ const Slider = () => {
             style={{ backgroundColor: "#F3F3F3", height: "100%" }}
         >
             <div className="row" style={{ height: "100%" }}>
-                <div className="col-7  height-100 d-flex flex-column justify-content-center">
-                    <div className="slide-content p-5">
+                <div className="col-md-7  height-100 d-flex flex-column justify-content-center">
+                    <div className="slide-content p-2 p-md-5">
                         <h5 className="display-9">Combo Deals Power Tools</h5>
                         <h2 style={{ fontSize: "60px", fontWeight: "bold" }}>
                             OFFER 20{" "}
@@ -29,9 +29,9 @@ const Slider = () => {
                         <button className="btn btn-primary">Shop Now</button>
                     </div>
                 </div>
-                <div className="col-5  height-100  d-flex flex-column justify-content-center">
+                <div className="col-md-5  height-100  d-flex flex-column justify-content-center">
                     <div className="img">
-                        <img src={slideImg} alt="" />
+                        <img style={{ width: "100%" }} src={slideImg} alt="" />
                     </div>
                 </div>
             </div>
