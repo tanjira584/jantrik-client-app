@@ -8,8 +8,15 @@
     display: inline-block;
     margin-bottom: 10px;
 }
+.slide-content h2 {
+    font-size: 60px;
+    font-weight: bold;
+}
 @media screen and (max-width: 768px) {
     .summery ul li {
         width: 50%;
+    }
+    .slide-content h2 {
+        font-size: 45px;
     }
 }

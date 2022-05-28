@@ -9,9 +9,9 @@ const Slider = () => {
         >
             <div className="row" style={{ height: "100%" }}>
                 <div className="col-md-7  height-100 d-flex flex-column justify-content-center">
-                    <div className="slide-content p-2 p-md-5">
+                    <div className="slide-content text-center text-md-start p-2 p-md-5">
                         <h5 className="display-9">Combo Deals Power Tools</h5>
-                        <h2 style={{ fontSize: "60px", fontWeight: "bold" }}>
+                        <h2>
                             OFFER 20{" "}
                             <sup
                                 style={{ fontSize: "18px" }}

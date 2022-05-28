@@ -25,11 +25,87 @@ const Payment = () => {
         return <p className="text-center">Loading......</p>;
     }
     return (
-        <div>
+        <div className="py-3">
             <div className="row">
                 <div className="col-md-7">
                     <div className="billing-address">
                         <h2>Billing Address</h2>
+                        <div className="profile">
+                            <div>
+                                <h6>
+                                    Name:{" "}
+                                    <span className="fst-italic">
+                                        {order.name}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>
+                                    Email:{" "}
+                                    <span className="fst-italic">
+                                        {order.email}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>
+                                    Phone:{" "}
+                                    <span className="fst-italic">
+                                        {order.phone || "016xxxxxxxx"}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>
+                                    Country:{" "}
+                                    <span className="fst-italic">
+                                        {order.country}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>
+                                    City:{" "}
+                                    <span className="fst-italic">
+                                        {order.city}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>
+                                    ZIP:{" "}
+                                    <span className="fst-italic">
+                                        {order.zip}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div>
+                                <h6>
+                                    Quantity:{" "}
+                                    <span className="fst-italic">
+                                        {order.quantity}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div className="">
+                                <h6>
+                                    Price per Piece:{" "}
+                                    <span className="fst-italic">
+                                        {order.price}
+                                    </span>
+                                </h6>
+                            </div>
+                            <div className="">
+                                <h6>
+                                    Total Coast:{" "}
+                                    <span className="fst-italic">
+                                        ${" "}
+                                        {parseInt(order.quantity) *
+                                            parseInt(order.price)}
+                                    </span>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="col-md-5">
