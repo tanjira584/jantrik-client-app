@@ -26,7 +26,9 @@ const Slider = () => {
                         <h5 className="mb-4">
                             Price: <span className="text-primary"> $200</span>
                         </h5>
-                        <button className="btn btn-primary">Shop Now</button>
+                        <button className="banner-btn border-0 slider-btn">
+                            Shop Now
+                        </button>
                     </div>
                 </div>
                 <div className="col-md-5  height-100  d-flex flex-column justify-content-center">

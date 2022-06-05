@@ -10,6 +10,7 @@ import "./Home.css";
 import HomeProduct from "./HomeProduct";
 import Policy from "./Policy";
 import Reviews from "./Reviews";
+import SecondaryBannar from "./SecondaryBannar";
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <Header></Header>
             <CompanyBanner></CompanyBanner>
             <HomeProduct></HomeProduct>
+            <SecondaryBannar></SecondaryBannar>
             <DisplayedProduct></DisplayedProduct>
             <BussinessCounter></BussinessCounter>
             <Reviews></Reviews>

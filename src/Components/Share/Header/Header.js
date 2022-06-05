@@ -6,6 +6,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import auth from "../../../firebase.init";
 import useAdmin from "../../../hooks/useAdmin";
+import HeaderTop from "./HeaderTop";
+import HeaderMiddle from "./HeaderMiddle";
+import HeaderBottom from "./HeaderBottom";
 
 const Header = () => {
     const [toggle, setToggle] = useState(false);
@@ -29,6 +32,10 @@ const Header = () => {
     };
     return (
         <div>
+            <HeaderTop></HeaderTop>
+            <HeaderMiddle></HeaderMiddle>
+            <HeaderBottom></HeaderBottom>
+            {/*-------
             <nav className="navbar navbar-expand-lg bg-primary navbar-dark">
                 <div className="container-md ">
                     <Link className="navbar-brand" to="/">
@@ -116,7 +123,7 @@ const Header = () => {
                         </ul>
                     </div>
                 </div>
-            </nav>
+            </nav> ----*/}
             <div
                 className={
                     toggle

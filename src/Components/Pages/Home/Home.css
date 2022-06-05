@@ -21,6 +21,26 @@
 .home-news:hover {
     box-shadow: 0 5px 10px rgb(0 0 0 / 15%);
 }
+/*-----Banner Button----*/
+.banner-btn {
+    text-decoration: none;
+    display: inline-block;
+    color: #fff;
+    background: #31b2ee;
+    padding: 8px 24px;
+    border-radius: 16px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    transition: 0.5s all;
+}
+.slider-btn {
+    background-color: #000;
+}
+.banner-btn:hover {
+    background-color: #129bda;
+    color: #fff;
+}
 /*---------
 https://i.ibb.co/fn5rr8j/auto1.webp
 https://i.ibb.co/r07qCk9/cutting1.webp
